@@ -1,15 +1,20 @@
 import { LoginPage } from '../../src/pages/login.page';
 import { RegisterPage } from '../../src/pages/register.page';
 import { WelcomePage } from '../../src/pages/welcome.page';
+import { faker } from '@faker-js/faker';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify register', () => {
   test('register with correct data and login @GAD_R32_01', async ({ page }) => {
     //Arrange
-    const userFirstName = 'Agata';
-    const userLastName = 'Nowak';
-    const userEmail = `nowaczek1${new Date().getTime()}@nowa.pl`;
-    const userPassword = 'test123';
+    const userFirstName = faker.person.firstName();
+    const userLastName = faker.person.lastName();
+    // const userEmail = `nowaczek1${new Date().getTime()}@nowa.pl`;
+    const userEmail = faker.internet.email({
+      firstName: userFirstName,
+      lastName: userLastName,
+    });
+    const userPassword = faker.internet.password({ length: 5 });
     const registerPage = new RegisterPage(page);
     //Act
     await registerPage.goto();
