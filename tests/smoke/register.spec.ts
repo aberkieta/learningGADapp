@@ -1,8 +1,7 @@
-import { RegisterUser } from '../../src/models/user.model';
+import { randomUserData } from '../../src/factories/user.factory';
 import { LoginPage } from '../../src/pages/login.page';
 import { RegisterPage } from '../../src/pages/register.page';
 import { WelcomePage } from '../../src/pages/welcome.page';
-import { faker } from '@faker-js/faker';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify register', () => {
@@ -17,17 +16,19 @@ test.describe('Verify register', () => {
     // });
     // const userPassword = faker.internet.password({ length: 5 });
 
-    const registerUserData: RegisterUser = {
-      userFirstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
-      userLastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
-      userEmail: '',
-      userPassword: faker.internet.password({ length: 5 }),
-    };
+    // const registerUserData: RegisterUser = {
+    //   userFirstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
+    //   userLastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
+    //   userEmail: '',
+    //   userPassword: faker.internet.password({ length: 5 }),
+    // };
 
-    registerUserData.userEmail = faker.internet.email({
-      firstName: registerUserData.userFirstName,
-      lastName: registerUserData.userLastName,
-    });
+    const registerUserData = randomUserData();
+
+    // registerUserData.userEmail = faker.internet.email({
+    //   firstName: registerUserData.userFirstName,
+    //   lastName: registerUserData.userLastName,
+    // });
 
     const registerPage = new RegisterPage(page);
     //Act
@@ -65,12 +66,15 @@ test.describe('Verify register', () => {
     page,
   }) => {
     //Assert
-    const registerUserData: RegisterUser = {
-      userFirstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
-      userLastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
-      userEmail: '#%#%@',
-      userPassword: faker.internet.password({ length: 5 }),
-    };
+    // const registerUserData: RegisterUser = {
+    //   userFirstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
+    //   userLastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
+    //   userEmail: '#%#%@',
+    //   userPassword: faker.internet.password({ length: 5 }),
+    // };
+
+    const registerUserData = randomUserData();
+    registerUserData.userEmail = '#%#%@';
 
     const expectedErrorText = 'Please provide a valid email address';
     const registerPage = new RegisterPage(page);
