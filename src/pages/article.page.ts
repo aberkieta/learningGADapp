@@ -7,6 +7,8 @@ export class ArticlePage extends BasePage {
   mainMenu: MainMenuComponent;
   articleTitle: Locator;
   articleBody: Locator;
+  titleError = this.page.locator('#alertPopup');
+  bodyError = this.page.locator('#alertPopup');
 
   constructor(page: Page) {
     super(page);
