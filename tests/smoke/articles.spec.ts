@@ -21,6 +21,22 @@ test.describe('Verify articles', () => {
     await articlesPage.goto();
     await articlesPage.addArticleButtonLogged.click();
   });
+
+  test('User can access single article @GAD-R04-03', async ({ page }) => {
+    // //Arrange
+    const articlePage = new ArticlePage(page);
+    const articleData = randomNewArticle();
+    await addArticleView.createArticle(articleData);
+    await articlesPage.goto();
+
+    //Act
+    await page.getByText(articleData.title).click();
+
+    //Assert
+    await expect.soft(articlePage.articleTitle).toHaveText(articleData.title);
+    await expect.soft(articlePage.articleBody).toHaveText(articleData.body);
+  });
+
   test('Create new articles @GAD_R04_01', async ({ page }) => {
     // //Arrange
 
