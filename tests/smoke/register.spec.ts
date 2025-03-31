@@ -5,7 +5,6 @@ import { RegisterPage } from '../../src/pages/register.page';
 import { WelcomePage } from '../../src/pages/welcome.page';
 import { expect, test } from '@playwright/test';
 
-
 test.describe('Verify register', () => {
   let registerPage: RegisterPage;
   let registerUserData: RegisterUser;
