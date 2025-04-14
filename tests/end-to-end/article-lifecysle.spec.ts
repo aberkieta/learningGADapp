@@ -52,4 +52,28 @@ test.describe('Create and verify article', () => {
       .soft(articlePage.articleBody)
       .toHaveText(articleData.body, { useInnerText: true });
   });
+
+  test('Logged user can delete his own article@GAD_R04_04', async ({
+    page,
+  }) => {
+    //Arrange
+    await articlesPage.gotoArticle(articleData.title);
+    page.on('dialog', async (dialog) => {
+      await dialog.accept();
+    });
+
+    //Act
+    await articlePage.deleteIcon.click();
+
+    //Assert
+    await articlesPage.waitForPageToLoadUrl();
+    const title = await articlesPage.title();
+    expect(title).toContain('Articles');
+
+    // await page.getByTestId('search-input').fill(articleData.title);
+    // await page.getByTestId('search-button').click();
+    // await expect(page.getByTestId('no - results')).toHaveText('No data');
+
+    //no-result
+  });
 });

@@ -9,7 +9,7 @@ export class ArticlePage extends BasePage {
   articleBody: Locator;
   titleError = this.page.locator('#alertPopup');
   bodyError = this.page.locator('#alertPopup');
-
+  deleteIcon = this.page.getByTestId('delete');
   constructor(page: Page) {
     super(page);
     this.mainMenu = new MainMenuComponent(this.page);
