@@ -1,4 +1,4 @@
-import { RegisterUser } from '../models/user.model';
+import { RegisterUserModel } from '../models/user.model';
 import { BasePage } from './base.page';
 import { Locator, Page } from '@playwright/test';
 
@@ -56,11 +56,11 @@ export class RegisterPage extends BasePage {
     this.emailErrorText = this.page.locator('#octavalidate_email');
   }
 
-  async register(registerUserData: RegisterUser): Promise<void> {
-    await this.userFirstNameInput.fill(registerUserData.userFirstName);
-    await this.userLastNameInput.fill(registerUserData.userLastName);
-    await this.userEmailInput.fill(registerUserData.userEmail);
-    await this.userPasswordInput.fill(registerUserData.userPassword);
+  async register(RegisterUserModelData: RegisterUserModel): Promise<void> {
+    await this.userFirstNameInput.fill(RegisterUserModelData.userFirstName);
+    await this.userLastNameInput.fill(RegisterUserModelData.userLastName);
+    await this.userEmailInput.fill(RegisterUserModelData.userEmail);
+    await this.userPasswordInput.fill(RegisterUserModelData.userPassword);
     await this.registerButton.click();
   }
 }

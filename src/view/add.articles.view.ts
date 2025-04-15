@@ -12,9 +12,9 @@ export class AddArticleView {
 
   constructor(private page: Page) {}
 
-  async createArticle(AddArticle: AddArticleModel): Promise<void> {
-    await this.titleInput.fill(AddArticle.title);
-    await this.bodyInput.fill(AddArticle.body);
+  async createArticle(AddArticleModel: AddArticleModel): Promise<void> {
+    await this.titleInput.fill(AddArticleModel.title);
+    await this.bodyInput.fill(AddArticleModel.body);
     await this.saveButton.click();
   }
 }

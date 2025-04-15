@@ -1,4 +1,3 @@
-import { LoginUser } from '../../src/models/login.user.model';
 import { LoginPage } from '../../src/pages/login.page';
 import { WelcomePage } from '../../src/pages/welcome.page';
 import { testUser1 } from '../../src/test-data/user.data';
@@ -7,12 +6,9 @@ import { expect, test } from '@playwright/test';
 test.describe('Verify login', () => {
   test('login with correct credentials @GAD_R02_01', async ({ page }) => {
     // //Arrange
-    // const loginUserData: LoginUser = {
-    //   userEmail: testUser1.userEmail,
-    //   userPassword: testUser1.userPassword,
-    // };
 
     const loginPage = new LoginPage(page);
+    const expectedWelcomeTitle = 'Welcome';
 
     //Act
 
@@ -24,18 +20,17 @@ test.describe('Verify login', () => {
     const welcomePage = new WelcomePage(page);
     const title = await welcomePage.title();
     //Assert
-    expect(title).toContain('Welcome');
+    expect(title).toContain(expectedWelcomeTitle);
   });
 
   test('login with incorrect password @GAD_R02_01', async ({ page }) => {
     //Arrange
 
-    const loginUserData: LoginUser = {
+    const loginPage = new LoginPage(page);
+    const loginUserData: LoginUserModel = {
       userEmail: testUser1.userEmail,
       userPassword: 'incorrect Password',
     };
-
-    const loginPage = new LoginPage(page);
 
     //Act
     await loginPage.goto();
