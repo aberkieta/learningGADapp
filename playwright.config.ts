@@ -1,3 +1,4 @@
+import { BASE_URL } from './src/global-setup';
 import { defineConfig, devices } from '@playwright/test';
 
 /**
@@ -14,7 +15,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3000/',
+    baseURL: BASE_URL,
     //baseURL: process.env.BASE_URL,
     actionTimeout: 0,
     trace: 'on',
