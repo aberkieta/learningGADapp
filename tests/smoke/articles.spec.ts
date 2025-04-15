@@ -45,7 +45,7 @@ test.describe('Verify articles', () => {
     const articleData = randomNewArticle();
 
     //Act
-    await expect.soft(addArticleView.header).toBeVisible();
+    await expect.soft(addArticleView.addNewHeader).toBeVisible();
     await addArticleView.createArticle(articleData);
 
     //Assert

@@ -2,7 +2,7 @@ import { AddArticleModel } from '../models/article.model';
 import { Locator, Page } from '@playwright/test';
 
 export class AddArticleView {
-  header: Locator = this.page.getByRole('heading', {
+  addNewHeader: Locator = this.page.getByRole('heading', {
     name: 'Add New Entry',
   });
   titleInput: Locator = this.page.getByTestId('title-input');
