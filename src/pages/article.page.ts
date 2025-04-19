@@ -10,6 +10,8 @@ export class ArticlePage extends BasePage {
   titleError = this.page.locator('#alertPopup');
   bodyError = this.page.locator('#alertPopup');
   deleteIcon = this.page.getByTestId('delete');
+  addCommentButton = this.page.locator('#add-new');
+  alertPopup = this.page.getByTestId('alert-popup');
   constructor(page: Page) {
     super(page);
     this.mainMenu = new MainMenuComponent(this.page);
