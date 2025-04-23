@@ -1,11 +1,21 @@
-import { Page } from '@playwright/test';
+import { AddCommentModel } from '../models/comment.model';
+import { Locator, Page } from '@playwright/test';
 
 export class AddCommentView {
-  addNewHeader: Locator = this.page.getByRole('heading', {
-    name: 'Add New Comment',
-  });
-  bodyInput = this.page.locator('#body');
-  saveButton = this.page.getByRole('button', { name: 'Save' });
+  addNewHeader: Locator;
+  bodyInput: Locator;
+  saveButton: Locator;
 
-  constructor(private page: Page) {}
+  constructor(private page: Page) {
+    this.addNewHeader = this.page.getByRole('heading', {
+      name: 'Add New Comment',
+    });
+    this.bodyInput = this.page.locator('#body');
+    this.saveButton = this.page.getByRole('button', { name: 'Save' });
+  }
+
+  async createComment(commentData: AddCommentModel): Promise<void> {
+    await this.bodyInput.fill(commentData.body);
+    await this.saveButton.click();
+  }
 }
