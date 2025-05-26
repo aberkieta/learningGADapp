@@ -8,15 +8,17 @@ test.describe('Verify menu main buttons', () => {
     page,
   }) => {
     //Arrange
+    const expectedCommentsTitle = 'Comments';
     const articlesPage = new ArticlesPage(page);
-    const commentsPage = new CommentsPage(page);
+    // const commentsPage = new CommentsPage(page);
 
     //Act
     await articlesPage.goto();
-    await articlesPage.mainMenu.commentsButton.click();
+    // await articlesPage.mainMenu.commentsButton.click();
+    const commentsPage = await articlesPage.mainMenu.clickCommentsButton();
     //Assert
     const title = await commentsPage.title();
-    expect(title).toContain('Comments');
+    expect(title).toContain(expectedCommentsTitle);
   });
   test('articles button navigates to articles page @GAD_R01_03', async ({
     page,
